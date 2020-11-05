@@ -58,6 +58,10 @@ def pyx_library(name, deps = [], py_deps = [], srcs = [], **kwargs):
         native.cc_binary(
             name = shared_object_name,
             srcs = [stem + ".cpp"],
+            copts = [
+              "-Wno-unused-function",
+              "-Wno-maybe-uninitialized"
+            ],
             deps = deps + ["@local_config_python//:python_headers"],
             linkshared = 1,
         )
